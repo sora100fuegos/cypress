@@ -8,13 +8,7 @@ const randomPassword = Math.random().toString(36).slice(-8);
 const url  = Cypress.env('base-url')
 
     it ('sign in process', () =>  {
-        cy.visit(`${url}/login`);
-        cy.contains('New User Signup!');
-        cy.get('.signup-form input:nth-child(2)').click();
-        cy.get('.signup-form input:nth-child(2)').type('john');
-        cy.get('.signup-form input:nth-child(3)').click();
-        cy.get('.signup-form input:nth-child(3)').type(randEmail);
-        cy.get('.btn:nth-child(5)').click();
+      cy.signinNew("carlos",randEmail)
     })
     
     it ('Enter account information process', () => {

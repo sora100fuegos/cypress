@@ -23,8 +23,35 @@
 //
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
+
+import 'cypress-file-upload';
+
+const url  = Cypress.env('base-url')
+
 Cypress.Commands.add('login', (username, password) => {
     cy.get('[data-qa=login-email]').type(username);
     cy.get('[data-qa=login-password]').type(password);
     cy.get('[data-qa=login-button]').click();
+})
+
+
+Cypress.Commands.add('signinNew', (name, email) => {
+
+    cy.visit(`${url}/login`);
+    cy.contains('New User Signup!');
+    cy.get('[data-qa=signup-name]').type(name);
+    cy.get('[data-qa=signup-email]').type(email);
+    cy.get('[data-qa=signup-button]').click();
+})
+
+Cypress.Commands.add('contactForm', (name, email, subject,message) => {
+
+    cy.visit(`${url}/contact_us`);
+    cy.get('h2').contains('Get In Touch').should('have.text', 'Get In Touch');
+    cy.get('[data-qa=name]').type(name);
+    cy.get('[data-qa=email]').type(email);
+    cy.get('[data-qa=subject]').type(subject);
+    cy.get('[data-qa=message]').type(message);
+    cy.get('[name="upload_file"]').attachFile('example.jpg');
+    cy.get('[data-qa=submit-button]').click();
 })
