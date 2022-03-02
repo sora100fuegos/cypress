@@ -1,6 +1,7 @@
 {
     "chromeWebSecurity": false ,
     "env": {
-        "base-url": "https://automationexercise.com/"
+        "base-url": "https://automationexercise.com/",
+        "product":"tshirt"
     }
 }

@@ -45,7 +45,7 @@ const url  = Cypress.env('base-url')
 
     });
     it('check that the username is visible', () => {
-  cy.get('b').contains('Carlos Cienfuegos');
+  cy.get('b').contains('carlos');
 
     });
 
