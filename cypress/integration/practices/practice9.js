@@ -18,8 +18,8 @@ it('check the product list', () => {
 cy.visit(url);
 cy.url().should('contains', url);
 cy.get('a[href*="/products"]').click()
-cy.get('[id=search_product]').type(Cypress.env('product'))
-cy.get('[id=submit_search]').click()
+cy.get('#search_product').type(Cypress.env('product'))
+cy.get('#submit_search').click()
 cy.get('h2').contains('Searched Products').should('have.text', 'Searched Products')
 
 

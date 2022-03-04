@@ -11,3 +11,15 @@
 */
 
 
+ const url = Cypress.env('base-url');
+
+ it ('show subscribed message successfully', () => {
+
+cy.visit(url);
+cy.scrollTo('bottom');
+cy.get('h2').contains('Subscription').should('have.text', 'Subscription')
+cy.get('#susbscribe_email').type('cienfuegossilvacarlos@gmail.com');
+cy.get('#subscribe').click();
+
+cy.get('#success-subscribe').should('be.visible');
+ });

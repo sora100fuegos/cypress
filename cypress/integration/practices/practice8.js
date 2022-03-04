@@ -14,7 +14,8 @@
 
 const url = Cypress.env('base-url')
 const product = ['Blue Top' ,'Category: Women > Tops','Rs. 500' ,'Availability: In Stock','Condition: New','Brand: Polo']
-it('check the product list', () => {
+it('check the product list', () => 
+{
 cy.visit(url);
 cy.url().should('contains', url);
 cy.get('a[href*="/products"]').click()
