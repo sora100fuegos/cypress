@@ -2,6 +2,7 @@
     "chromeWebSecurity": false ,
     "env": {
         "base-url": "https://automationexercise.com/",
-        "product":"tshirt"
+        "product":"tshirt" ,
+        "user" : "carlos"
     }
 }
