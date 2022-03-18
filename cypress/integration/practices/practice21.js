@@ -13,7 +13,6 @@
 
 */
 
-var randomEmail = require('random-email');
 const url = Cypress.env('base-url');
 
  it ('Add review on product', () => {
@@ -27,7 +26,7 @@ cy.get('a[href="#reviews"]').should('be.visible')
 
 
 cy.submitReview();
-cy.get('review-section').should('be.visible')
+cy.get('#review-section').should('not.have.css', 'display', 'none')
 
 
  });

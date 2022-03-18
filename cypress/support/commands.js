@@ -26,6 +26,8 @@
 
 import 'cypress-file-upload';
 
+
+require('cypress-downloadfile/lib/downloadFileCommand')
 const url  = Cypress.env('base-url')
 
 Cypress.Commands.add('login', (username, password) => {
@@ -105,6 +107,7 @@ cy.get('.card-cvc').type('500');
 cy.get('.card-expiry-month').type('12');
 cy.get('.card-expiry-year').type('3000');
 cy.get('#submit').click();
+cy.get('p').contains('Congratulations! Your order has been confirmed!').should('be.visible')
 
 })
 

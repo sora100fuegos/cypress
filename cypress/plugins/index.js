@@ -16,10 +16,15 @@
  * @type {Cypress.PluginConfig}
  */
 // eslint-disable-next-line no-unused-vars
+
+
+const {downloadFile} = require('cypress-downloadfile/lib/addPlugin')
+
 module.exports = (on, config) => {
   // `on` is used to hook into various events Cypress emits
   // `config` is the resolved Cypress config
   on('task', { queryDb: query => { return queryTestDb(query, config) }, }); //For running sql query
+  on('task', {downloadFile})
 }
 
 // plugin to connect to mongodb 
@@ -44,3 +49,4 @@ function queryTestDb(query, config) {
     })
   })
 }
+

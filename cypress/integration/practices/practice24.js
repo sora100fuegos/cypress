@@ -17,53 +17,40 @@
 16. Enter payment details: Name on Card, Card Number, CVC, Expiration date
 17. Click 'Pay and Confirm Order' button
 18. Verify success message 'Your order has been placed successfully!'
-19. Click 'Delete Account' button
-20. Verify 'ACCOUNT DELETED!' and click 'Continue' button
+19. Click 'Download Invoice' button and verify invoice is downloaded successfully.
+20. Click 'Continue' button
+21. Click 'Delete Account' button
+22. Verify 'ACCOUNT DELETED!' and click 'Continue' button
 */
 
+const url = Cypress.env('base-url');
 
 var randomEmail = require('random-email');
 
 
 const randEmail = randomEmail({ domain: 'example.com' });
 const randomPassword = Math.random().toString(36).slice(-8);
-const url = Cypress.env('base-url');
 
- it ('Place Order: Register while Checkout', () => {
+it ('Download Invoice after purchase order', () => {
+
 cy.visit(url);
 cy.url().should('contains', url);
-
+cy.get('a[href="/login"]').first().click({force : true})
+cy.signinNew(Cypress.env('user'),randEmail, randomPassword)
 cy.addToCart()
 cy.get('a[href="/view_cart"]').first().click()
-
-cy.url().should('contains', `${url}view_cart`);
-
 cy.get('.check_out').click();
-
-cy.get('a[href="/login"]').first().click({force : true})
-
-    cy.signinNew(Cypress.env('user'),randEmail, randomPassword)
-
-  it('check that the username is visible', () => {
-    cy.get('b').contains('carlos');
-  
-      });
-cy.get('a[href="/view_cart"]').first().click()
-cy.get('.check_out').click();
-
 cy.get('.form-control').type('ejemplo-comentario');
 cy.get('a[href="/payment"]').click();
+cy.addCardInfo();
 
 
-cy.get('[data-qa=name-on-card]').type(Cypress.env('user'))
-cy.get('[data-qa=card-number]').type('1234')
 
-cy.get('.card-cvc').type('500');
-cy.get('.card-expiry-month').type('12');
-cy.get('.card-expiry-year').type('3000');
-cy.get('#submit').click();
+cy.url().then(url => {
+    const new_url ="https://www.automationexercise.com/download_invoice/"+url.slice(url.length-3,url.length)
+    cy.downloadFile(new_url,'cypress/fixtures/Download', 'test.txt')
+    cy.readFile('cypress/fixtures/Download/test.txt').should('contain', url.slice(url.length-3,url.length))
+  });
 
-cy.get('p').contains('Congratulations! Your order has been confirmed!').should('be.visible')
-
-
+cy.get('[data-qa=continue-button]').click()
  });
