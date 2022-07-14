@@ -18,7 +18,6 @@ const url = Cypress.env('base-url');
 cy.visit(url);
 cy.url().should('contains', url);
 cy.get('a[href="/products"]').click()
-//cy.get('.overlay-content>[data-product-id="1"]').trigger('mouseover')
 cy.get('.overlay-content>[data-product-id="1"]').click({multiple: true, force: true} )
 cy.get('.close-modal').click();
 cy.get('.overlay-content>a[data-product-id="2"]').click({ multiple: true , force: true} )
@@ -34,7 +33,11 @@ cy.get('#product-2>td.cart_price').should('be.visible')
 cy.get('#product-2>td.cart_quantity').should('be.visible')
 cy.get('#product-2>td.cart_total').should('be.visible')
 
+cy.get('#product-1 > .cart_delete > .cart_quantity_delete > .fa').click();
+cy.get('#product-2 > .cart_delete > .cart_quantity_delete > .fa').click();
 
+
+cy.clearLocalStorage();
 //cy.get('.btn-success').click();
 //cy.url().should('contains', 'https://automationexercise.com/view_cart');
 

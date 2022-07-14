@@ -33,7 +33,7 @@ cy.signinNew(Cypress.env('user'),randEmail, randomPassword)
 cy.addToCart()
 cy.get('a[href="/view_cart"]').first().click()
 cy.get('.check_out').click();
-
+cy.get('[href="/logout"]').click();
  });
 
  

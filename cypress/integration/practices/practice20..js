@@ -34,5 +34,7 @@ cy.get('.features_items>div').should('be.visible').get('.add-to-cart').click({ f
   cy.login('cienfuegossilvacarlos@gmail.com', '100fuegos')
   cy.get('a[href="/view_cart"]').first().click({force :true})
   cy.get('#cart_info').should('be.visible')
+  cy.get('[href="/logout"]').click();
+  
 
  });

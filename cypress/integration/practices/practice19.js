@@ -23,6 +23,7 @@ cy.get('a[href="/brand_products/Polo"]').click({force :true})
 cy.url().should('contains',`${url}brand_products/Polo`);
 cy.get('a[href="/brand_products/H&M"]').click({force :true})
 cy.url().should('contains', `${url}brand_products/H&M`);
+cy.get('[href="/logout"]').click();
 
 
  });

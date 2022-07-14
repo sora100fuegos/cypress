@@ -64,6 +64,6 @@ cy.get('.card-expiry-year').type('3000');
 cy.get('#submit').click();
 
 cy.get('p').contains('Congratulations! Your order has been confirmed!').should('be.visible')
-
+cy.get('[href="/logout"]').click();
 
  });

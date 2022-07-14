@@ -53,4 +53,5 @@ cy.url().then(url => {
   });
 
 cy.get('[data-qa=continue-button]').click()
+cy.get('[href="/logout"]').click();
  });

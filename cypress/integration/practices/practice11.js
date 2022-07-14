@@ -20,9 +20,11 @@ cy.url().should('contains', url);
 cy.get('a[href="/view_cart"]').first().click()
 cy.scrollTo('bottom');
 cy.get('h2').contains('Subscription').should('have.text', 'Subscription')
-cy.get('#susbscribe_email]').type('cienfuegossilvacarlos@gmail.com');
+cy.get('#susbscribe_email').type('cienfuegossilvacarlos@gmail.com');
 cy.get('#subscribe').click();
 
 cy.get('#success-subscribe').should('be.visible');
+cy.scrollTo('top');
+cy.get('[href="/logout"]').click();
 
  });

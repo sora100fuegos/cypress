@@ -24,6 +24,7 @@
 // -- This will overwrite an existing command --
 // Cypress.Commands.overwrite('visit', (originalFn, url, options) => { ... })
 
+//import cypress from 'cypress';
 import 'cypress-file-upload';
 
 
@@ -39,7 +40,7 @@ Cypress.Commands.add('login', (username, password) => {
 
 Cypress.Commands.add('signinNew', (name, email ,password) => {
 
-    //cy.visit(`${url}/login`);
+    cy.visit(`${url}/login`);
     cy.contains('New User Signup!');
     cy.get('[data-qa=signup-name]').type(name);
     cy.get('[data-qa=signup-email]').type(email);
@@ -128,4 +129,4 @@ Cypress.Commands.add('submitReview', () => {
     cy.get('#button-review').click()
 
 })
-    
+
